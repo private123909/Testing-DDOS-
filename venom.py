@@ -87,7 +87,7 @@ async def run_attack_command_async(target_ip, target_port, duration):
     process = await asyncio.create_subprocess_shell(f"./bgmi {target_ip} {target_port} {duration} 500")
     await process.communicate()
 
-def is_user_admin(user_id, chat_id):
+def is_user_owner(user_id, chat_id):
     try:
         return bot.get_chat_member(chat_id, user_id).status in ['administrator', 'creator','owner']
     except:
@@ -97,7 +97,7 @@ def is_user_admin(user_id, chat_id):
 def approve_or_disapprove_user(message):
     user_id = message.from_user.id
     chat_id = message.chat.id
-    is_admin = is_user_admin(user_id, CHANNEL_ID)
+    is_owner= is_user_owner(user_id, CHANNEL_ID)
     cmd_parts = message.text.split()
 
     if not is_admin:
