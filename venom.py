@@ -89,7 +89,7 @@ async def run_attack_command_async(target_ip, target_port, duration):
 
 def is_user_admin(user_id, chat_id):
     try:
-        return bot.get_chat_member(chat_id, user_id).status in ['administrator', 'creator']
+        return bot.get_chat_member(chat_id, user_id).status in ['administrator', 'creator','owner']
     except:
         return False
 
